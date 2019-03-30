@@ -1,65 +1,79 @@
-<!DOCTYPE html>
-<html>
-
-  <head>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css" />
-    <title>Museum of Ordinary Objects</title>
-  </head>
-
-  <body>
-    <div id="admin" class="content">
-      <h1>Museum of Ordinary Objects: The Admin Page!</h1>
-      <div class="heading">
-        <div class="circle">
-          1
-        </div>
-        <h2>Add an Item</h2>
-      </div>
-      <div class="add">
-        <div class="form">
-          <input v-model="title" placeholder="Title" /><br />
-          <textarea v-model="description" placeholder="description"></textarea>
-          <p></p>
-          <input type="file" name="photo" @change="fileChanged" />
-          <button @click="upload">Upload</button>
-        </div>
-        <div class="upload" v-if="addItem">
-          <h2>{{addItem.title}}</h2>
-          <img :src="addItem.path" />
-          <div>
-            {{addItem.description}}
-          </div>
-        </div>
-      </div>
-      <div class="heading">
-        <div class="circle">2</div>
-        <h2>Edit/Delete an Item</h2>
-      </div>
-      <div class="edit">
-        <div class="form">
-          <input v-model="findTitle" placeholder="Search">
-          <div class="suggestions" v-if="suggestions.length > 0">
-            <div class="suggestion" v-for="s in suggestions" @click="selectItem(s)">{{s.title}}
-            </div>
-          </div>
-        </div>
-        <div class="upload" v-if="findItem">
-          <input v-model="findItem.title">
-          <p></p>
-          <img :src="findItem.path" /><br />
-          <textarea v-model="findItem.description"></textarea>
-        </div>
-        <div class="actions" v-if="findItem">
-          <button @click="deleteItem(findItem)">Delete</button>
-          <button @click="editItem(findItem)">Edit</button>
-        </div>
-      </div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.7/vue.js" integrity="sha256-g+Q8DFAmG5+eyRPSydX0LY4TfjsL11XSDrIGerbbEdA=" crossorigin="anonymous"></script>
-    <script src="/admin.js"></script>
-  </body>
-
-</html>
+var app = new Vue({
+  el: '#admin',
+  data: {
+    title: "",
+    description: "",
+    file: null,
+    addItem: null,
+    items: [],
+    findTitle: "",
+    findItem: null,
+  },
+  created() {
+    this.getItems();
+  },
+  computed: {
+    suggestions() {
+      return this.items.filter(item => item.title.toLowerCase().startsWith(this.findTitle.toLowerCase()));
+    }
+  },
+  methods: {
+    created(){
+      this.getItems();
+    },
+    fileChanged(event) {
+      this.file = event.target.files[0]
+    },
+    async upload() {
+      try {
+        const formData = new FormData();
+        formData.append('photo', this.file, this.file.name)
+        let r1 = await axios.post('/api/photos', formData);
+        let r2 = await axios.post('/api/items', {
+          title: this.title,
+          description: this.description,
+          path: r1.data.path
+        });
+        this.addItem = r2.data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getItems() {
+      try {
+        let response = await axios.get("/api/items");
+        this.items = response.data;
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    selectItem(item) {
+      this.findTitle = "";
+      this.findItem = item;
+    },
+    async deleteItem(item) {
+     try {
+       let response = axios.delete("/api/items/" + item._id);
+       this.findItem = null;
+       this.getItems();
+       return true;
+     } catch (error) {
+       console.log(error);
+     }
+   },
+   async editItem(item) {
+    try {
+      let response = await axios.put("/api/items/" + item._id, {
+        title: this.findItem.title,
+        description: this.findItem.description,
+      });
+      this.findItem = null;
+      this.getItems();
+      return true;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  },
+});
