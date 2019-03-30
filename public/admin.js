@@ -1,5 +1,5 @@
 var app = new Vue({
-  el: '#admin',
+  el: '#app',
   data: {
     title: "",
     description: "",
@@ -27,9 +27,7 @@ var app = new Vue({
     async upload() {
       try {
         const formData = new FormData();
-        formData.append('photo', this.file, this.file.name)
-        let r1 = await axios.post('/api/photos', formData);
-        let r2 = await axios.post('/api/items', {
+        let r1 = await axios.post('/api/items', {
           title: this.title,
           description: this.description,
           path: r1.data.path
