@@ -27,22 +27,37 @@ const upload = multer({
 
 // Creawte a scheme for items in the museum: a title and a path to an image.
 const itemSchema  = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
-  grade: String,
+  fName: String,
+  lName: String,
+  min: Number,
+  gr: String,
+  gf: String,
+  pE: String,
+  pU: String,
+  uP: String,
+  user: String,
+  pass: String,
+  sI: Boolean
 });
 
 //Create a model for items in the museum.
-const Item = mongoose.model('Item', itemSchema);
+const Participant = mongoose.model('Participants', itemSchema);
 
 
 
 // Create a new item in the museum: takes a title and a path to an image.
-app.post('/api/item', async (req, res) => {
+app.post('/api/Participants', async (req, res) => {
   const participant = new Participant({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    grade: req.body.grade,
+    fName: req.body.firstName,
+    lName: req.body.lastName,
+    min: req.body.minutes,
+    gr: req.body.grade,
+    gf: req.body.greaterFive,
+    pE: req.body.participantEmail,
+    pU: req.body.parentUsername,
+    uP: req.body.useParent,
+    user: req.body.partUser,
+    pass: req.body.partPass,
   });
   try {
     await participant.save();
@@ -54,7 +69,7 @@ app.post('/api/item', async (req, res) => {
 });
 
 // Get a list of all the items in the Museum
-app.get('/api/item', async (req, res) => {
+app.get('/api/Participants', async (req, res) => {
   try {
     let participant = await Participant.find();
     res.send(participant);
@@ -77,15 +92,22 @@ app.delete('/api/Participants/:id', async (req, res) => {
 app.put('/api/Participants/:id', async (req, res) => {
   try{
     let participant = await Participant.findOne({_id: req.params.id});
-    participant.firstName = req.body.title;
-    participant.lastName = req.body.description;
-    participant.grade = req.body.description;
+    Participant.fName = req.body.firstName;
+    Participant.lName = req.body.lastName;
+    Participant.min = req.body.minutes;
+    Participant.gr = req.body.grade;
+    Participant.gf = req.body.greaterFive;
+    Participant.pE = req.body.participantEmail;
+    Participant.pU = req.body.participantUsername;
+    Participant.uP = req.body.useParent;
+    Participant.user = req.body.partUser;
+    Participant.pass = req.body.partPass;
     await participant.save();
     res.send(participant);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
   }
-})
+});
 
 app.listen(3000, () => console.log('Server listening on port 3000!'));

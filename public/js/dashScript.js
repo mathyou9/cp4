@@ -57,7 +57,7 @@ let app = new Vue({
   },
   created(){
     this.getParticipants();
-  }
+  },
   methods:{
     addPart(){
       if(this.firstName == ''){
@@ -84,6 +84,7 @@ let app = new Vue({
       if(this.partPass == ''){
         this.partPass = '!';
       }
+      this.register();
       this.participants.push({
         fName: this.firstName,
         lName: this.lastName,
@@ -97,8 +98,15 @@ let app = new Vue({
         pass: this.partPass,
       });
       this.firstName = '';
-      this.lastname = '';
+      this.lastName = '';
+      this.grade = '';
       this.minutes = '';
+      this.greaterFive = '',
+      this.participantEmail = '',
+      this.parentUsername = '',
+      this.useParent = '',
+      this.partUser = '',
+      this.partPass = ''
     },
     addPVue(){
       this.exited = false;
@@ -107,11 +115,14 @@ let app = new Vue({
     removePVue(){
       this.exited = true;
       this.back = false;
-    }
-    ,
+    },
+    updatePVue(){
+      this.exited = false;
+      this.back = true;
+    },
     async getParticipants(){
       try{
-        let response = await axios.get("/api/items");
+        let response = await axios.get("/api/Participants");
         this.participants = response.data;
         return true;
       } catch (error) {
@@ -121,16 +132,28 @@ let app = new Vue({
     async register(){
       try{
         const formData = new FormData();
-        let r1 = await axios.post('/api/items', {
+        let r1 = await axios.post('/api/Participants', {
           firstName: this.firstName,
           lastName: this.lastName,
-          grade: this.grade
+          minutes: this.minutes,
+          grade: this.grade,
+          greaterFive: this.greaterFive,
+          participantEmail: this.participantEmail,
+          parentUsername: this.parentUsername,
+          useParent: this.useParent,
+          partUser: this.partUser,
+          partPass: this.partPass
         });
         this.addParticipant = r1.data;
       } catch (error) {
         console.log(error);
       }
     },
+    async updateUser(){
+      try{
+        const formData = new FormData();
+      }
+    }
 
   }
 
