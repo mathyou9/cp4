@@ -76,6 +76,15 @@ body{
   transform: translate(0vw);
   transition: transform 1s;
 }
+.updateExited{
+  transform: translate(100vw);
+  transition: transform 1s;
+}
+.updateBack{
+  z-index: 10;
+  transform: translate(0vw);
+  transition: transform 1s;
+}
 .backgroundTint{
   width: 100vw;
   height: 100vh;

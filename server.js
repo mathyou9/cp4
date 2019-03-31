@@ -92,16 +92,16 @@ app.delete('/api/Participants/:id', async (req, res) => {
 app.put('/api/Participants/:id', async (req, res) => {
   try{
     let participant = await Participant.findOne({_id: req.params.id});
-    Participant.fName = req.body.firstName;
-    Participant.lName = req.body.lastName;
-    Participant.min = req.body.minutes;
-    Participant.gr = req.body.grade;
-    Participant.gf = req.body.greaterFive;
-    Participant.pE = req.body.participantEmail;
-    Participant.pU = req.body.participantUsername;
-    Participant.uP = req.body.useParent;
-    Participant.user = req.body.partUser;
-    Participant.pass = req.body.partPass;
+    participant.fName = req.body.firstName;
+    participant.lName = req.body.lastName;
+    participant.min = req.body.minutes;
+    participant.gr = req.body.grade;
+    participant.gf = req.body.greaterFive;
+    participant.pE = req.body.participantEmail;
+    participant.pU = req.body.participantUsername;
+    participant.uP = req.body.useParent;
+    participant.user = req.body.partUser;
+    participant.pass = req.body.partPass;
     await participant.save();
     res.send(participant);
   } catch (error) {

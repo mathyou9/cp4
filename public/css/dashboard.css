@@ -9,6 +9,7 @@
   width: 29vw;
   border-radius: 10px;
   position: absolute;
+  font-size: 1.15vw;
 }
 .totalP{
   width: 27.5vw;
@@ -142,6 +143,24 @@
 }
 .divider{
   display:inline-block;
-  width: 5vw;
+  width: 4vw;
+  vertical-align: top;
+  overflow:hidden;
+}
+.gDivider{
+  display:inline-block;
+  width: 3.5vw;
+  vertical-align: top;
+  overflow:hidden;
+}
+
+.edit{
+  display:inline-block;
+  width: 2.5vw;
+  vertical-align: top;
+}
+.delete{
+  display:inline-block;
+  width: 2.5vw;
   vertical-align: top;
 }

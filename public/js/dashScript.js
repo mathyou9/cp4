@@ -43,7 +43,9 @@ let app = new Vue({
       }
     ],
     exited: true,
+    updateExited: true,
     back: false,
+    updateBack: false,
     firstName: '',
     lastName: '',
     minutes: '',
@@ -53,7 +55,10 @@ let app = new Vue({
     parentUsername: '',
     useParent: '',
     partUser: '',
-    partPass: ''
+    partPass: '',
+    findFirstName: "",
+    findLastName: "",
+    selectedParticipant: null,
   },
   created(){
     this.getParticipants();
@@ -108,6 +113,9 @@ let app = new Vue({
       this.partUser = '',
       this.partPass = ''
     },
+    editPart(){
+      this.updateUser(this.selectedParticipant);
+    },
     addPVue(){
       this.exited = false;
       this.back = true;
@@ -116,9 +124,35 @@ let app = new Vue({
       this.exited = true;
       this.back = false;
     },
-    updatePVue(){
-      this.exited = false;
-      this.back = true;
+    updatePVue2(participant){
+      this.updateExited = false;
+      this.updateBack = true;
+      this.selectedParticipant = participant;
+      this.firstName = participant.fName;
+      this.lastName = participant.lName;
+      this.grade = participant.gr;
+      this.minutes = participant.min;
+      this.greaterFive = participant.gf,
+      this.participantEmail = participant.pE,
+      this.parentUsername = participant.pU,
+      this.useParent = participant.uP,
+      this.partUser = participant.user,
+      this.partPass = participant.pass
+    },
+    removePVue2(participant){
+      this.updateExited = true;
+      this.updateBack = false;
+      this.selectedParticipant = participant;
+      this.firstName = '';
+      this.lastName = '';
+      this.grade = '';
+      this.minutes = '';
+      this.greaterFive = '',
+      this.participantEmail = '',
+      this.parentUsername = '',
+      this.useParent = '',
+      this.partUser = '',
+      this.partPass = ''
     },
     async getParticipants(){
       try{
@@ -144,16 +178,41 @@ let app = new Vue({
           partUser: this.partUser,
           partPass: this.partPass
         });
-        this.addParticipant = r1.data;
       } catch (error) {
         console.log(error);
       }
     },
-    async updateUser(){
+    async updateUser(participant){
       try{
-        const formData = new FormData();
+        let response = await axios.put("/api/Participants/" + participant._id, {
+          firstName: this.firstName,
+          lastName: this.lastName,
+          minutes: this.minutes,
+          grade: this.grade,
+          greaterFive: this.greaterFive,
+          participantEmail: this.participantEmail,
+          parentUsername: this.parentUsername,
+          useParent: this.useParent,
+          partUser: this.partUser,
+          partPass: this.partPass
+        });
+        console.log(this.firstName);
+        this.getParticipants();
+        return true;
+      } catch (error) {
+        console.log(error);
       }
-    }
+    },
+    async deletePVue(participant){
+      try{
+        let response = axios.delete("/api/Participants/" + participant._id);
+        this.selectedParticipant = null;
+        this.getParticipants();
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
 
   }
 
