@@ -5,7 +5,7 @@
   <body>
     <div class="backgroundTint exited" id="backgroundTint">
       <div class="signinForm" id="signinForm">
-        <img class="exit" id="exit" src="img/exit.svg" />
+        <img class="exit" id="exit" src="images/exit.svg" />
         <form>
           Username:
           <input name="username" type="text" />
@@ -21,34 +21,27 @@
       </div>
       <div class="signinblank" id="signinblank"></div>
     </div>
-    <div class="header">
-      <div class="title">
-        SUMMER READING PROGRAM
-      </div>
-      <a href="#" class="signin" id="signinButton">
-        SIGN IN
-      </a>
+    <div class="book"></div>
+    <div class="signInFront" id="signinButton">
+      <svg class="circle">
+        <circle cx="50%" cy="50%" r="9vh"></circle>
+      </svg>
+      SIGN IN
     </div>
-    <div class="signup">
+    <div class="signUpFront" id="signupButton">
+      <svg class="circle">
+        <circle cx="50%" cy="50%" r="9vh"></circle>
+      </svg>
       SIGN UP
-      <p>
-        Signing up will be implemented later. To get to Vue click sign in and click submit.
-      </p>
     </div>
-    <div class="participatingLibraries">
-      <div class="title2">
-        Participating Libraries:
-      </div>
-      <ul>
-        <li>
-          Tremonton City Library
-        </li>
-      </ul>
+    <div class="frontText">
+      GET READING!<br />
+      GET REWARDS!
     </div>
     <div class="footer">
       <a href="https://github.com/mathyou9/">Matthew's Github</a>
     </div>
     <script src="js/anime.min.js"></script>
-    <script type="text/javascript" src="/js/mainscript.js"></script>
+    <script type="text/javascript" src="js/mainscript.js"></script>
   </body>
 </html>

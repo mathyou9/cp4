@@ -36,12 +36,10 @@ function animationdone(){
 function exitlogin(){
   signin.classList.add("exited");
   signin.classList.remove("back");
-  signinButton.classList.remove("full");
 }
 function loginScreen(){
   signin.classList.remove("exited");
   signin.classList.add("back");
-  signinButton.classList.add("full");
 }
 // anime({
 //   targets: '.line-drawing-demo .lines path',
