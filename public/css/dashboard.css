@@ -1,3 +1,8 @@
+/* COLOR SCHEME
+#c64d56 - red
+#47cdc6 - blue
+#c7f65a - green
+*/
 .containerDash{
   width: 90vw;
   left: 5vw;
@@ -18,14 +23,17 @@
   margin-bottom: 2vh;
   border-radius: 5px;
   padding: .25vh;
-  padding-top:2vh;
-  padding-bottom: 2vh;
+  padding-top:.75vh;
+  padding-bottom: 1vh;
   display: inline-block;
   vertical-align: top;
-  border-color: rgba(110,140,160,1);
+  border-color: #47cdc6;
   border-width: .5vw;
   border-radius: 10px;
   border-style: solid;
+  color: rgba(240,240,240,1);
+  font-family: sans-serif;
+  font-size: 2vw;
 }
 .addP{
   position: relative;
@@ -35,7 +43,7 @@
   margin-top: 2vh;
   margin-bottom: 2vh;
   padding: .25vh;
-  border-color: rgba(110,140,160,1);
+  border-color: #47cdc6;
   border-width: .5vw;
   border-radius: 10px;
   border-style: solid;
@@ -44,9 +52,12 @@
 .addPInside{
   display: inline-block;
   padding: 1.25vh;
-  padding-top: 2vh;
-  padding-bottom: 2vh;
+  padding-top: .75vh;
+  padding-bottom: .5vh;
   vertical-align: top;
+  color: rgba(240,240,240,1);
+  font-family: sans-serif;
+  font-size: 2vw;
 }
 .addSVG{
   width: 5vh;
@@ -57,37 +68,49 @@
   cy:2.5vh;
   r: 2.25vh;
   stroke-width: .25vh;
-  stroke: rgba(110,140,160,1);
-  fill: rgba(110,140,160,1);
-}
-.plusClass{
-
+  stroke: #47cdc6;
+  fill: #47cdc6;
 }
 .namesP{
-  background-color: rgba(110,140,160,1);
+  background-color: #47cdc6;
   left:0vw;
+  border-style: solid;
+  border-color: rgba(240,240,240,1);
+  border-width: 6px;
+  padding: 4px;
+  font-family: sans-serif;
 }
 .signedP{
-  background-color: rgba(100,160,120,1);
+  background-color: #c7f65a;
   left: 30vw;
+  border-style: solid;
+  border-color: rgba(240,240,240,1);
+  border-width: 6px;
+  padding: 4px;
+  font-family: sans-serif;
 }
 .haventSignedP{
-  background-color: rgba(160,100,100,1);
+  background-color: #c64d56;
   left: 60vw;
+  border-style: solid;
+  border-color: rgba(240,240,240,1);
+  border-width: 6px;
+  padding: 4px;
+  font-family: sans-serif;
 }
 .emailP{
   position: relative;
   width: 5vw;
   border-style: solid;
   border-radius: 1vw;
-  border-width: .5vw;
+  border-width: 4px;
   display: inline-block;
   margin: 0px;
   text-align: center;
   left: 5vw;
-  background-color: rgba(10,40,60,1);
+  background-color: rgba(51,51,51,1);
   padding: .5vw;
-  color: rgba(210,240,260,1);
+  color: rgba(240,240,240,1);
   top: 0vh;
 }
 .textP{
@@ -95,14 +118,14 @@
   width: 5vw;
   border-style: solid;
   border-radius: 1vw;
-  border-width: .5vw;
+  border-width: 4px;
   display: inline-block;
   margin: 0px;
   text-align: center;
   left: 10vw;
-  background-color: rgba(10,40,60,1);
+  background-color: rgba(51,51,51,1);
   padding: .5vw;
-  color: rgba(210,240,260,1);
+  color: rgba(240,240,240,1);
   top: 0vh;
 }
 .bottomButton1{
@@ -163,4 +186,9 @@
   display:inline-block;
   width: 2.5vw;
   vertical-align: top;
+}
+.borderContain{
+  height: 55vh;
+  border-style: dotted;
+  border-color: rgba(51,51,51,1);
 }

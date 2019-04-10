@@ -6,13 +6,31 @@
   font-family: fontTwo;
   src: url(font2.ttf);
 }
+@font-face{
+  font-family: fontThree;
+  src: url(font3.otf);
+}
 body{
   margin:0px;
   padding: 0px;
   background-color: rgba(51,51,51,1);
   overflow-x: hidden;
 }
+.indexBody{
+  margin:0px;
+  padding: 0px;
+  background-color: #c64d56;
+  overflow-x: hidden;
+}
 /* #96a8b2 */
+
+/* COLOR SCHEME
+#c64d56 - red
+#47cdc6 - blue
+#c7f65a - green
+*/
+
+
 /*front page*/
 .book{
   background-image: url("../images/logo.svg");
@@ -21,10 +39,10 @@ body{
   background-position: center;
   position: absolute;
   text-align: center;
-  width: 50vw;
-  height: 50vh;
-  left: 25vw;
-  top: 35vh;
+  width: 100vw;
+  height: 100vh;
+  left: 00vw;
+  top: 25vh;
 }
 .signInFront{
   width: 20vh;
@@ -63,17 +81,8 @@ body{
   text-align: center;
   top: 40vh;
   font-size: 15vh;
-  color: rgba(51,51,51,1);
-  font-family: fontOne;
-  text-shadow:
-    2px 0 0 rgba(240,240,240,1),
-    -2px 0 0 rgba(240,240,240,1),
-    0 2px 0 rgba(240,240,240,1),
-    0 -2px 0 rgba(240,240,240,1),
-    1px 1px rgba(240,240,240,1),
-    -1px -1px 0 rgba(240,240,240,1),
-    1px -1px 0 rgba(240,240,240,1),
-    -1px 1px 0 rgba(240,240,240,1);
+  color: rgba(240,240,240,1);
+  font-family: fontThree;
 }
 .circle{
   position: absolute;
@@ -98,10 +107,52 @@ body{
   stroke-dasharray: 7vh;
 }
 
+/*sign in form*/
+.backgroundTint{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: rgba(0,0,0,.5);
+  left: 0px;
+  top: 0px;
+  z-index: 1;
+}
+.signinForm{
+  position: fixed;
+  width: 30vw;
+  height: 30vh;
+  background-color: rgba(51,51,51,1);
+  text-align: center;
+  left: 35vw;
+  top: 25vh;
+  border-radius: 2vw;
+  padding-top: 10vh;
+  border-style: solid;
+  border-color: #c7f65a;
+  border-width: 5px;
+  color: rgba(240,240,240,1);
+  font-family: fontThree;
+  font-size: 2vw;
+}
+.signinForm input {
+  height: 2vw;
+  border-radius: 2vw;
+  vertical-align: middle;
+}
+.signinForm button{
+  height: 4vw;
+  width: 25vw;
+  text-decoration: none;
+  border-style: none;
+  border-radius: 2vw;
+  font-family: fontThree;
+  font-size: 2vw;
+}
+
 
 
 .header{
-  background-color: rgba(50,85,104,1);
+  background-color: #47cdc6;
   height: 10vh;
   width: 100vw;
   text-align: center;
@@ -112,8 +163,8 @@ body{
   display: inline-block;
   position: absolute;
   right: 0vw;
-  color: #eeeeee;
-  background-color: rgba(108,49,51,1);
+  color: rgba(240,240,240,1);
+  background-color: #c64d56;
   border-radius: 1vh 0vh 0vh 1vh;
   padding-top: 3vh;
   padding-left: 2vh;
@@ -133,24 +184,14 @@ body{
   transition: all 1s;
 }
 .title{
-  background-color: #96a8b2;
+  background-color: #47cdc6;
   color: rgba(50,85,104,1);
   display: inline-block;
   margin-top: 2vh;
   padding: 1vh;
   border-radius: 1vh;
 }
-.signinForm{
-  position: fixed;
-  width: 30vw;
-  height: 30vh;
-  background-color: rgba(150,100,100,1);
-  text-align: center;
-  left: 35vw;
-  top: 25vh;
-  border-radius: 2vw;
-  padding-top: 10vh;
-}
+
 .exit{
   height: 5vh;
   position: absolute;
@@ -181,15 +222,6 @@ body{
   transform: translate(0vw);
   transition: transform 1s;
 }
-.backgroundTint{
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  background-color: rgba(150,100,100,0);
-  left: 0px;
-  top: 0px;
-  z-index: 1;
-}
 .signinblank{
   width: 100vw;
   height: 100vh;
@@ -215,15 +247,6 @@ body{
   width: 30vw;
   left: 35vw;
   font-size: 2vw;
-}
-.participatingLibraries{
-  width: 30vw;
-  background-color: rgba(50,85,104,1);
-  border-radius: 2vw;
-  text-align: center;
-  padding-bottom: 1vh;
-  left: 35vw;
-  position: relative;
 }
 .title2{
   background-color: #96a8b2;
